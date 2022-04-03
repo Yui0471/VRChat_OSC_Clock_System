@@ -146,13 +146,7 @@ if __name__ == "__main__":
         ]
 
         for i in ip_list:
-            if is_integer(i) and int(i) <= 255:
-                ip_set = ip_list[0] + "." + ip_list[1] + "." + ip_list[2] + "." + ip_list[3]
-
-                ip = str(ip_set)
-                return ip
-
-            else:
+            if not is_integer(i) or int(i) > 255:
                 sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】")
 
                 window["ip1"].update("127")
@@ -162,7 +156,13 @@ if __name__ == "__main__":
 
                 ip = "127.0.0.1"
                 return ip
+            
+        #成功
+        ip_set = ip_list[0] + "." + ip_list[1] + "." + ip_list[2] + "." + ip_list[3]
 
+        ip = str(ip_set)
+        return ip
+        
     def port_check(values):
         valid_flag = False
         if is_integer(values["port"]):
@@ -190,14 +190,7 @@ if __name__ == "__main__":
         ]
 
         for i in param_list:
-            if i.isascii():
-                hh = param_list[0]
-                mh = param_list[1]
-                sc = param_list[2]
-
-                return hh, mh, sc
-
-            else:
+            if not i.isascii():
                 sg.popup("エラーが発生しました！\n【parametersに使用できない文字列が含まれています】")
 
                 window["hh"].update("AC_hh")
@@ -210,6 +203,12 @@ if __name__ == "__main__":
 
                 return hh, mh, sc
 
+        #成功
+        hh = param_list[0]
+        mh = param_list[1]
+        sc = param_list[2]
+
+        return hh, mh, sc
 
 while True:
 
