@@ -144,9 +144,9 @@ if __name__ == "__main__":
             values["ip3"],
             values["ip4"]
         ]
-
+        
         for i in ip_list:
-            if is_integer(i) and 3 >= len(i):
+            if is_integer(i) and int(i) <= 255:
                 ip_set = ip_list[0] + "." + ip_list[1] + "." + ip_list[2] + "." + ip_list[3]
 
                 ip = str(ip_set)
