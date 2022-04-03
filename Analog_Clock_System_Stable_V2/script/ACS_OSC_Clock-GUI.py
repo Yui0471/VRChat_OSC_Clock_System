@@ -134,14 +134,7 @@ if __name__ == "__main__":
         sys.exit()
 
     def is_integer(n):
-        try:
-            float(n)
-
-        except ValueError:
-            return False
-
-        else:
-            return float(n).is_integer()
+        return n.isascii() and n.isdecimal()
 
     def ip_check(values):
 
