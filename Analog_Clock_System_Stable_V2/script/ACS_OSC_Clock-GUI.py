@@ -64,7 +64,7 @@ window = sg.Window("Analog Clock System Beta 2.1 for GUI", layout)
 
 class Receive():
     def __init__(self):
-        self.ROOP = False
+        self.loop = False
 
 
     def target(self):
@@ -79,7 +79,7 @@ class Receive():
         print(param_mh)
         print(param_sc)
 
-        while (self.ROOP):
+        while (self.loop):
 
             dt_now = datetime.datetime.now()
 
@@ -118,140 +118,135 @@ class Receive():
         self.thread.start()
 
 
+def startEvent(event):
+    r.loop = True
+    r.start()
+        
+def finishEvent(event):
+    r.loop = False
+    window.close()
+    sys.exit()
+
+def is_integer(n):
+    return n.isascii() and n.isdecimal()
+
+def ip_check(values):
+
+    ip_list = [
+        values["ip1"],
+        values["ip2"],
+        values["ip3"],
+        values["ip4"]
+    ]
+
+    for i in ip_list:
+        if not is_integer(i) or int(i) > 255:
+            sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】")
+
+            window["ip1"].update("127")
+            window["ip2"].update("0")
+            window["ip3"].update("0")
+            window["ip4"].update("1")
+
+            ip = "127.0.0.1"
+            return ip
+        
+    #成功
+    ip = ".".join(ip_list)
+    return ip
+
+def port_check(values):
+    valid_flag = False
+    if is_integer(values["port"]):
+        #数値の場合
+        port = int(values["port"])
+        #ポート範囲のチェック
+        if 1 <= port <= 65535:
+            valid_flag = True
+    
+    if not valid_flag:
+        #失敗
+        sg.popup("エラーが発生しました！\n【PORTに使用できない値が含まれています】")
+
+        window["port"].update("9000")
+        port = 9000
+    
+    return port
+
+def str_check(values):
+
+    param_list = [
+        values["hh"],
+        values["mh"],
+        values["sc"]
+    ]
+
+    for i in param_list:
+        if not i.isascii():
+            sg.popup("エラーが発生しました！\n【parametersに使用できない文字列が含まれています】")
+
+            window["hh"].update("AC_hh")
+            window["mh"].update("AC_mh")
+            window["sc"].update("AC_sc")
+
+            hh = "AC_hh"
+            mh = "AC_mh"
+            sc = "AC_sc"
+
+            return hh, mh, sc
+
+    #成功
+    hh = param_list[0]
+    mh = param_list[1]
+    sc = param_list[2]
+
+    return hh, mh, sc
+
 if __name__ == "__main__":
     r = Receive()
 
-    def startEvent(event):
-        r.ROOP = True
-        r.start()
+    while True:
 
-    def changeEvent(event):
-        pass
+        event, values = window.read()
+        print(event, values)
 
-    def finishEvent(event):
-        r.ROOP = False
-        window.close()
-        sys.exit()
+        if event is None:
+            break
 
-    def is_integer(n):
-        return n.isascii() and n.isdecimal()
+        elif event == sg.WINDOW_CLOSED:
+            break
 
-    def ip_check(values):
+        elif event == "settings":
 
-        ip_list = [
-            values["ip1"],
-            values["ip2"],
-            values["ip3"],
-            values["ip4"]
-        ]
+            ip = ip_check(values)
+            port = port_check(values)
+            window["paramtext"].update(ip + ":" + str(port))
 
-        for i in ip_list:
-            if not is_integer(i) or int(i) > 255:
-                sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】")
+            print(ip, ":", end="")
+            print(port)
 
-                window["ip1"].update("127")
-                window["ip2"].update("0")
-                window["ip3"].update("0")
-                window["ip4"].update("1")
+            strcheck = str_check(values)
 
-                ip = "127.0.0.1"
-                return ip
-            
-        #成功
-        ip_set = ip_list[0] + "." + ip_list[1] + "." + ip_list[2] + "." + ip_list[3]
-
-        ip = str(ip_set)
-        return ip
-        
-    def port_check(values):
-        valid_flag = False
-        if is_integer(values["port"]):
-            #数値の場合
-            port = int(values["port"])
-            #ポート範囲のチェック
-            if 1 <= port <= 65535:
-                valid_flag = True
-        
-        if not valid_flag:
-            #失敗
-            sg.popup("エラーが発生しました！\n【PORTに使用できない値が含まれています】")
-
-            window["port"].update("9000")
-            port = 9000
-        
-        return port
-
-    def str_check(values):
-
-        param_list = [
-            values["hh"],
-            values["mh"],
-            values["sc"]
-        ]
-
-        for i in param_list:
-            if not i.isascii():
-                sg.popup("エラーが発生しました！\n【parametersに使用できない文字列が含まれています】")
-
-                window["hh"].update("AC_hh")
-                window["mh"].update("AC_mh")
-                window["sc"].update("AC_sc")
-
-                hh = "AC_hh"
-                mh = "AC_mh"
-                sc = "AC_sc"
-
-                return hh, mh, sc
-
-        #成功
-        hh = param_list[0]
-        mh = param_list[1]
-        sc = param_list[2]
-
-        return hh, mh, sc
-
-while True:
-
-    event, values = window.read()
-    print(event, values)
-
-    if event is None:
-        break
-
-    if event == sg.WINDOW_CLOSED:
-        break
-
-    if event == "settings":
-
-        ip = ip_check(values)
-        port = port_check(values)
-        window["paramtext"].update(ip + ":" + str(port))
-
-        print(ip, ":", end="")
-        print(port)
-
-        strcheck = str_check(values)
-
-        AC_hh = strcheck[0]
-        AC_mh = strcheck[1]
-        AC_sc = strcheck[2]
+            AC_hh = strcheck[0]
+            AC_mh = strcheck[1]
+            AC_sc = strcheck[2]
 
 
-    if event == "startbutton":
+        elif event == "startbutton":
 
-        ip = ip_check(values)
-        port = port_check(values)
-        window["paramtext"].update(ip + ":" + str(port))
+            ip = ip_check(values)
+            port = port_check(values)
+            window["paramtext"].update(ip + ":" + str(port))
 
-        print("start")
+            print("start")
 
-        startEvent(event)
+            startEvent(event)
 
-        window["sstext"].update("送信を開始しました")
+            window["sstext"].update("送信を開始しました")
 
-    if event == "stopbutton":
-        r.ROOP = False
+        elif event == "stopbutton":
+            r.loop = False
 
-        window["sstext"].update("送信を停止しました")
+            window["sstext"].update("送信を停止しました")
 
-finishEvent(event)
+    finishEvent(event)
