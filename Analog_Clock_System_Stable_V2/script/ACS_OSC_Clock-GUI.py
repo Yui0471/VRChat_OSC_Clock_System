@@ -144,7 +144,7 @@ if __name__ == "__main__":
             values["ip3"],
             values["ip4"]
         ]
-        
+
         for i in ip_list:
             if is_integer(i) and int(i) <= 255:
                 ip_set = ip_list[0] + "." + ip_list[1] + "." + ip_list[2] + "." + ip_list[3]
@@ -164,18 +164,22 @@ if __name__ == "__main__":
                 return ip
 
     def port_check(values):
-
-        if is_integer(values["port"]) and 4 >= len(values["port"]):
+        valid_flag = False
+        if is_integer(values["port"]):
+            #数値の場合
             port = int(values["port"])
-            return port
-
-        else:
+            #ポート範囲のチェック
+            if 1 <= port <= 65535:
+                valid_flag = True
+        
+        if not valid_flag:
+            #失敗
             sg.popup("エラーが発生しました！\n【PORTに使用できない値が含まれています】")
 
             window["port"].update("9000")
             port = 9000
-
-            return port
+        
+        return port
 
     def str_check(values):
 
