@@ -18,7 +18,7 @@ Analog Clock System Stable Version 2.0.1 for GUI
 """
 
 #作成 : 風庭ゆい
-#最終更新 : 2022/04/03
+#最終更新 : 2022/04/06
 
 AC_hh = "AC_hh"
 AC_mh = "AC_mh"
@@ -68,8 +68,6 @@ layout = [
         sg.Text("AC_sc", key="text_sc", size=(20,1))
     ],
 
-    [],
-
     [
         sg.Button("送信開始", key="startbutton"),
         sg.Text("送信停止中", size=(20,1), key="sstext")
@@ -81,7 +79,6 @@ layout = [
 
 ]
 
-#window = sg.Window("Analog Clock System Beta 2.0.1 for GUI", layout)
 
 class Receive():
     def __init__(self):
@@ -164,18 +161,16 @@ def isalnum_ascii(s):
     for i in str_list:
         if not i == "_":
             if i.isalnum() and i.isascii():
-                str_list[str_list.index(i)] = 1
+                pass
 
             else:
-                str_list[str_list.index(i)] = 0
+                return False
 
-        else:
-            str_list[str_list.index(i)] = 1
+        else: #_だったら
+            pass
 
-    if not 0 in str_list:
-        return True
+    return True
 
-    return False
 
 def is_integer(n):
     return n.isascii() and n.isdecimal()
@@ -204,8 +199,6 @@ def ip_check(values): #IPv4が有効かどうか
 
         return None
 
-    #finally:
-        #return ip, True
 
     #リスト形式に戻すかもしれない
     #ip_list = [
@@ -243,27 +236,6 @@ def port_check(values): #ポート番号が有効かどうか
 
     return port
 
-    #後の参考のために一応残しておく
-    #try:
-    #    port_set = int(values["port"])
-
-    #    if 1 <= port_set <= 65535:
-    #        port = port_set
-
-    #    else:
-    #        sg.popup("エラーが発生しました！\n【このポート番号は無効です】")
-
-    #        window["port"].update("9000")
-    #        port = 9000
-
-    #except ValueError:
-    #    sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】")
-
-    #    window["port"].update("9000")
-    #    port = 9000
-
-    #finally:
-    #    return port
 
 def interval_check(values):
     valid_flag = False
