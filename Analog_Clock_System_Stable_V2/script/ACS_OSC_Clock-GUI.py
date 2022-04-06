@@ -81,7 +81,7 @@ layout = [
 
 ]
 
-window = sg.Window("Analog Clock System Beta 2.0.1 for GUI", layout)
+#window = sg.Window("Analog Clock System Beta 2.0.1 for GUI", layout)
 
 class Receive():
     def __init__(self):
@@ -321,6 +321,9 @@ def parameter_check(values):
             return False
 
     return True
+
+
+window = sg.Window("Analog Clock System Beta 2.0.1 for GUI", layout)
 
 if __name__ == "__main__":
     r = Receive()
