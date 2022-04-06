@@ -262,6 +262,21 @@ def str_check(values): #パラメータが有効かどうか
         mh = values["mh"]
         sc = values["sc"]
 
+        param_list = [hh, mh, sc]
+
+        if len(param_list) != len(set(param_list)):
+            sg.popup("エラーが発生しました！\n【Parametersの文字列が重複しています】")
+
+            window["hh"].update("AC_hh")
+            window["mh"].update("AC_mh")
+            window["sc"].update("AC_sc")
+
+            hh = "AC_hh"
+            mh = "AC_mh"
+            sc = "AC_sc"
+
+            return hh, mh, sc
+
         return hh, mh, sc
 
     else:
