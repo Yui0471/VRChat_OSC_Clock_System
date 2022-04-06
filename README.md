@@ -63,5 +63,7 @@ pip install python-osc
 * 本データを使用する際のクレジット表記は必要ありません。  
 * 本データをダウンロードした時点で、本規約に同意したものとします。  
 
+* 内部で使用しているライブラリの関係上GUIアプリケーションのみ、[LGPL3.0](https://ja.wikipedia.org/wiki/GNU_Lesser_General_Public_License)が適用されます。
+
 
 最終更新 : 2022/04/04
