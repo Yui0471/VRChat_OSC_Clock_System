@@ -1,6 +1,6 @@
-【Digital Display System Stable Version 2.0】
+【Digital Display System Stable Version 2.1】
 
-最終更新 : 2022/03/16 風庭ゆい
+最終更新 : 2022/04/17 風庭ゆい
 開発協力 : 味醂, Rounz
 
 
@@ -31,10 +31,14 @@
 
 　Digital_Display_system_Stable_V2
 
-　・DDS_OSC_Clock.exe
+　・DDS_OSC_Clock-Simple.exe
 　　OSC送信を担当するアプリケーションです。
 　　１秒おきに現在時刻を送信します。
 　　使用する際はウインドウの指示に従ってください。
+
+　・DDS_OSC_Clock-GUI.exe
+　　OSC送信を担当するアプリケーションです。
+　　Simpleと機能が同じですが送信先などの設定をを変更できます。
 
 　・Digital_Display_System_Stable_V2.unitypackage
 　　アバターセットアップ用UnityPackageです。
@@ -112,14 +116,15 @@
 
 【使い方】----------------------------
 
-1.VRChatが起動しているPCでDDS_OSC_Clock.exeを実行します。
-　※起動している間、OSCを送信し続けます。
+1.VRChatが起動しているPCでDDS_OSC_Clock-Simple.exeまたはDDS_OSC_Clock-GUI.exeを実行します。
+　※Simple版は起動している間OSCを送信し続けます。
+　※GUI版は画面の操作でOSC送信を開始します。
 
 2.セットアップ済みのアバターに着替えて、EXMenuからOSCを有効化しておきます。
 
 3.VRChatがOSCを受信し、アバターのディスプレイ部分に現在時刻が表示されます。
 
-4.アプリケーション終了時はCtrl+Cを押下すると終了します。
+4.アプリケーション終了時はCtrl+Cを押下またはウインドウのxボタンで終了します。
 
 
 【更新履歴】----------------------------
@@ -164,10 +169,12 @@
 -シェーダーがMissingになる問題を修正
 -デフォルトシェーダーをUnlit/TransparentCutoutに統一
 
+〇2022/04/17 【Stable Version 2.1】
+-アプリケーションのGUI版を同梱
+
 
 【実装検討リスト】----------------------------
 
--PhotoshopやClipStudioなどで好きなフォントへ変更可能にする
 -シェーダーをUnlitからSunaoShaderへ移行、Emissionなどの対応
 -タイマー、カウントダウンなどの機能を実装
 -コンストレイントを使用しないセットアップを検討
@@ -184,6 +191,8 @@
 -Constraint用オブジェクトがなぜか離れた位置にいるのを修正したい[V1.1完了(みりんさんありがとう)]
 -テクスチャの整理[V1.2完了]
 -アナログ時計の開発[V1.2時点で分岐]
+-PhotoshopやClipStudioなどで好きなフォントへ変更可能にする[V2.0完了]
+-アプリケーションのGUI化(送信スタート、ストップボタンの実装)[V2.1完了]
 -noteで実装説明を書く[V2.0反映中]
 
 【開発環境】----------------------------

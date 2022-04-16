@@ -1,6 +1,6 @@
-【Analog Clock System Stable Version 2.0】
+【Analog Clock System Stable Version 2.1】
 
-最終更新 : 2022/03/16 風庭ゆい
+最終更新 : 2022/04/17 風庭ゆい
 開発協力 : 味醂, Rounz
 
 
@@ -31,10 +31,14 @@
 
 　Analog_Clock_system_Stable_V2
 
-　・ACS_OSC_Clock.exe
+　・ACS_OSC_Clock-Simple.exe
 　　OSC送信を担当するアプリケーションです。
 　　１秒おきに現在時刻を送信します。
-　　使用する際はウインドウの指示に従ってください。
+　　起動と同時にOSC送信を開始します。
+
+　・ACS_OSC_Clock-GUI.exe
+　　OSC送信を担当するアプリケーションです。
+　　Simpleと機能が同じですが送信先などの設定をを変更できます。
 
 　・Analog_Clock_Stable_V2.unitypackage
 　　アバターセットアップ用UnityPackageです。
@@ -111,14 +115,15 @@
 
 【使い方】----------------------------
 
-1.VRChatが起動しているPCでACS_OSC_Clock.exeを実行します。
-　※起動している間、OSCを送信し続けます。
+1.VRChatが起動しているPCでACS_OSC_Clock-Simple.exeまたはACS_OSC_Clock-GUI.exeを実行します。
+　※Simple版は起動している間OSCを送信し続けます。
+　※GUI版は画面の操作でOSC送信を開始します。
 
 2.セットアップ済みのアバターに着替えて、EXMenuからOSCを有効化しておきます。
 
 3.VRChatがOSCを受信し、アバターのディスプレイ部分に現在時刻が表示されます。
 
-4.アプリケーション終了時はCtrl+Cを押下すると終了します。
+4.アプリケーション終了時はCtrl+Cを押下またはウインドウのxボタンで終了します。
 
 
 【更新履歴】----------------------------
@@ -146,6 +151,9 @@
 〇2022/03/28 【Stable Version 2.0.1】
 -シェーダーがMissingになる問題を修正
 -デフォルトシェーダーをUnlit/TransparentCutoutに統一
+
+〇2022/04/17 【Stable Version 2.1】
+-アプリケーションのGUI版を同梱
 
 
 【開発環境】----------------------------

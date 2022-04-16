@@ -6,18 +6,16 @@ import sys
 import datetime
 import ipaddress
 
-msg = """
-//////////////////////////////////////////
-VRChat Open Sound Control 
-                  時刻表示プログラム
-
-Digital Display System Stable Version 2.0.1 for GUI
-
-//////////////////////////////////////////
-"""
+#////////////////////////////////////////////////////
+#VRChat Open Sound Control 
+#                  時刻表示プログラム
+#
+#Digital Display System Stable Version 2.1 for GUI
+#
+#////////////////////////////////////////////////////
 
 #作成 : 風庭ゆい
-#最終更新 : 2022/04/09
+#最終更新 : 2022/04/17
 
 DD_thp = "DD_thp"
 DD_hp = "DD_hp"
@@ -191,14 +189,14 @@ def ip_check(values):
             return ip
 
         else:
-            sg.popup("エラーが発生しました！\n【このIPは使用できません】")
+            sg.popup("エラーが発生しました！\n【このIPは使用できません】", title="IP Error!")
             window["ip"].update("127.0.0.1")
             ip = "127.0.0.1"
 
             return None
     
     except ValueError:
-        sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】")
+        sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】", title="IP Error!")
         window["ip"].update("127.0.0.1")
         ip = "127.0.0.1"
 
@@ -213,7 +211,10 @@ def port_check(values):
             valid_flag = True
 
     if not valid_flag:
-        sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】")
+        if values["port"] == "easter":
+            sg.popup(title="Easter egg", image="pass")
+
+        sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】", title="Port Error!")
 
         window["port"].update("9000")
         port = 9000
@@ -230,7 +231,7 @@ def interval_check(values):
             valid_flag = True
 
     if not valid_flag:
-        sg.popup("エラーが発生しました！\n【送信間隔に使用できない値が含まれています】")
+        sg.popup("エラーが発生しました！\n【送信間隔に使用できない値が含まれています】", title="Interval Error!")
         window["interval"].update("1")
         interval = 1
         return None
@@ -248,7 +249,7 @@ def str_check(values):
         param_list = [thp, hp, tp, op]
 
         if len(param_list) != len(set(param_list)):
-            sg.popup("エラーが発生しました！\n【Parametersの文字列が重複しています】")
+            sg.popup("エラーが発生しました！\n【Parametersの文字列が重複しています】", title="Parameter Error!")
 
             window["thp"].update("DD_thp")
             window["hp"].update("DD_hp")
@@ -265,7 +266,7 @@ def str_check(values):
         return thp, hp, tp, op
 
     else:
-        sg.popup("エラーが発生しました！\n【Parametersに使用できない文字列が含まれています】")
+        sg.popup("エラーが発生しました！\n【Parametersに使用できない文字列が含まれています】", title="Parameter Error!")
 
         window["thp"].update("DD_thp")
         window["hp"].update("DD_hp")
@@ -298,7 +299,7 @@ def parameter_check(values):
     return True
 
 
-window = sg.Window("Digital Display System Beta 2.0.1 for GUI", layout)
+window = sg.Window("Digital Display System V2.1 for GUI", layout)
 
 if __name__ == "__main__":
     r = Receive()

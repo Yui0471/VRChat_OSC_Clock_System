@@ -7,18 +7,16 @@ import datetime
 import math
 import ipaddress
 
-msg = """
-//////////////////////////////////////////
-VRChat Open Sound Control 
-                  時刻表示プログラム
-
-Analog Clock System Stable Version 2.0.1 for GUI
-
-//////////////////////////////////////////
-"""
+#////////////////////////////////////////////////////
+#VRChat Open Sound Control 
+#                  時刻表示プログラム
+#
+#Analog Clock System Stable Version 2.1 for GUI
+#
+#////////////////////////////////////////////////////
 
 #作成 : 風庭ゆい
-#最終更新 : 2022/04/06
+#最終更新 : 2022/04/17
 
 AC_hh = "AC_hh"
 AC_mh = "AC_mh"
@@ -186,14 +184,14 @@ def ip_check(values): #IPv4が有効かどうか
             return ip
 
         else:
-            sg.popup("エラーが発生しました！\n【このIPは使用できません】")
+            sg.popup("エラーが発生しました！\n【このIPは使用できません】", title="IP Error!")
             window["ip"].update("127.0.0.1")
             ip = "127.0.0.1"
 
             return None
 
     except ValueError:
-        sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】")
+        sg.popup("エラーが発生しました！\n【IPに使用できない値が含まれています】", title="IP Error!")
         window["ip"].update("127.0.0.1")
         ip = "127.0.0.1"
 
@@ -227,8 +225,13 @@ def port_check(values): #ポート番号が有効かどうか
             valid_flag = True
 
     if not valid_flag:
+        if is_integer(values["port"]):
+            port=int(values["port"]) #いーすたーえっぐ
+            if port == 471470:
+                sg.popup(title="Easter egg", image="pass")
+
         #失敗
-        sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】")
+        sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】", title="Port Error!")
 
         window["port"].update("9000")
         port = 9000
@@ -248,7 +251,7 @@ def interval_check(values):
 
     if not valid_flag:
         #失敗
-        sg.popup("エラーが発生しました！\n【送信間隔に使用できない値が含まれています】")
+        sg.popup("エラーが発生しました！\n【送信間隔に使用できない値が含まれています】", title="Interval Error!")
         window["interval"].update("1")
         interval = 1
         return None
@@ -265,7 +268,7 @@ def str_check(values): #パラメータが有効かどうか
         param_list = [hh, mh, sc]
 
         if len(param_list) != len(set(param_list)):
-            sg.popup("エラーが発生しました！\n【Parametersの文字列が重複しています】")
+            sg.popup("エラーが発生しました！\n【Parametersの文字列が重複しています】", title="Parameter Error!")
 
             window["hh"].update("AC_hh")
             window["mh"].update("AC_mh")
@@ -280,7 +283,7 @@ def str_check(values): #パラメータが有効かどうか
         return hh, mh, sc
 
     else:
-        sg.popup("エラーが発生しました！\n【Parametersに使用できない文字列が含まれています】")
+        sg.popup("エラーが発生しました！\n【Parametersに使用できない文字列が含まれています】", title="Parameter Error!")
 
         window["hh"].update("AC_hh")
         window["mh"].update("AC_mh")
@@ -310,7 +313,7 @@ def parameter_check(values):
     return True
 
 
-window = sg.Window("Analog Clock System Beta 2.0.1 for GUI", layout)
+window = sg.Window("Analog Clock System V2.1 for GUI", layout)
 
 if __name__ == "__main__":
     r = Receive()
