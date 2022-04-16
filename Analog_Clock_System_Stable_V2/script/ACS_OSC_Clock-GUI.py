@@ -225,10 +225,8 @@ def port_check(values): #ポート番号が有効かどうか
             valid_flag = True
 
     if not valid_flag:
-        if is_integer(values["port"]):
-            port=int(values["port"]) #いーすたーえっぐ
-            if port == 471470:
-                sg.popup(title="Easter egg", image="pass")
+        if values["port"] == "small is beautiful":
+            sg.popup(title="Image", image="./image.png")
 
         #失敗
         sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】", title="Port Error!")

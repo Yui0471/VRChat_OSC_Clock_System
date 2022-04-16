@@ -211,8 +211,8 @@ def port_check(values):
             valid_flag = True
 
     if not valid_flag:
-        if values["port"] == "easter":
-            sg.popup(title="Easter egg", image="pass")
+        if values["port"] == "small is beautiful":
+            sg.popup(title="Image", image="./image.png")
 
         sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】", title="Port Error!")
 
