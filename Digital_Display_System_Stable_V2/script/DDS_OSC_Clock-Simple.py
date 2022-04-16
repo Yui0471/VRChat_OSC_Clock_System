@@ -8,13 +8,13 @@ msg = """
 VRChat Open Sound Control 
                   時刻表示プログラム
 
-Digital Display System Stable Version 2.0
+Digital Display System Stable Version 2.1
 
 //////////////////////////////////////////
 """
 
 #作成 : 風庭ゆい
-#最終更新 : 2022/03/16
+#最終更新 : 2022/04/17
 
 #ipとポートをセット
 ip = "127.0.0.1"

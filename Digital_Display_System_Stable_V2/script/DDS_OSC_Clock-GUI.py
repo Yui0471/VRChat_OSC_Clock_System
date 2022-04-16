@@ -3,6 +3,7 @@ import PySimpleGUI as sg
 import time
 import threading
 import sys
+import os
 import datetime
 import ipaddress
 
@@ -43,7 +44,7 @@ layout = [
     [
         sg.Submit(button_text="設定を反映", key="settings"),
         sg.Text("設定中のIPアドレス:ポート番号 ▷"),
-        sg.Text("127.0.0.1:9000", size=(15,1), key="paramtext")
+        sg.Text("127.0.0.1:9000", size=(18,1), key="paramtext")
     ],
 
     [
@@ -158,6 +159,12 @@ def finishEvent(event):
     sys.exit()
 
 
+def resourcePath(filename):
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, filename)
+    return os.path.join
+
+
 def isalnum_ascii(s):
     str_list = list(s)
 
@@ -212,7 +219,7 @@ def port_check(values):
 
     if not valid_flag:
         if values["port"] == "small is beautiful":
-            sg.popup(title="Image", image="./image.png")
+            sg.popup(title="Image", image=resourcePath("resources/image.png"))
 
         sg.popup("エラーが発生しました！\n【Portに使用できない値が含まれています】", title="Port Error!")
 

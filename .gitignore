@@ -1,10 +1,12 @@
-Analog_Clock_System_Stable_V2-0-1.zip
-Digital_Display_System_Stable_V2-0-1.zip
+Analog_Clock_System_Stable_V2-1.zip
+Digital_Display_System_Stable_V2-1.zip
 
-ACS_OSC_Clock.exe
+ACS_OSC_Clock-Simple.exe
+ACS_OSC_Clock-GUI.exe
 Analog_Clock_System_Stable_V2.unitypackage
 
-DDS_OSC_Clock.exe
+DDS_OSC_Clock-Simple.exe
+DDS_OSC_Clock-GUI.exe
 Digital_Display_System_Stable_V2.unitypackage
 
 image.png
