@@ -159,4 +159,6 @@
 -python-osc 1.8.0
 -PyInstaller 4.9
 -Visual Studio Code 1.65.2
+-Adobe Photoshop 2022
+-ClipstudioPaint PRO
 

@@ -168,6 +168,9 @@
 〇2022/04/17 【Stable Version 2.1】
 -アプリケーションのGUI版を同梱
 
+〇2022/04/17 【Stable Version 2.1.1】
+-デジタルディスプレイ版GUIにて送信パラメータの不具合を修正
+
 
 【実装検討リスト】----------------------------
 
@@ -198,4 +201,5 @@
 -python-osc 1.8.0
 -PyInstaller 4.9
 -Visual Studio Code 1.65.2
-
+-Adobe Photoshop 2022
+-ClipstudioPaint PRO

@@ -11,7 +11,7 @@ import ipaddress
 #VRChat Open Sound Control 
 #                  時刻表示プログラム
 #
-#Digital Display System Stable Version 2.1 for GUI
+#Digital Display System Stable Version 2.1.1 for GUI
 #
 #////////////////////////////////////////////////////
 
@@ -134,8 +134,8 @@ class Receive():
             window["time"].update("送信中の現在時刻 :" + str(time_notify))
 
             #とんでけーー！！
-            client.send_message(param_tp, int(htp))
-            client.send_message(param_op, int(hop))
+            client.send_message(param_thp, int(htp))
+            client.send_message(param_hp, int(hop))
             client.send_message(param_tp, int(mtp))
             client.send_message(param_op, int(mop))
 
@@ -306,7 +306,7 @@ def parameter_check(values):
     return True
 
 
-window = sg.Window("Digital Display System V2.1 for GUI", layout)
+window = sg.Window("Digital Display System V2.1.1 for GUI", layout)
 
 if __name__ == "__main__":
     r = Receive()
